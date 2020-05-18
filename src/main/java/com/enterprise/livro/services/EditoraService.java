@@ -31,4 +31,9 @@ public class EditoraService {
 		editoraRepository.deleteById(id);
 	}
 	
+	public Editora atualizar(Editora editora, Long id) {
+		Editora edit = editoraRepository.getOne(id);
+		edit.setNome(editora.getNome());
+		return editoraRepository.save(edit);
+	}
 }
