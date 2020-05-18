@@ -3,11 +3,15 @@ package com.enterprise.livro.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.enterprise.livro.entities.Editora;
 import com.enterprise.livro.repository.EditoraRepository;
+import com.enterprise.livro.services.exceptions.ExceptionsGerais;
 
 @Service
 public class EditoraService {
@@ -28,12 +32,20 @@ public class EditoraService {
 	}
 	
 	public void remove(Long id) {
-		editoraRepository.deleteById(id);
+		try {
+			editoraRepository.deleteById(id);
+		}catch(EmptyResultDataAccessException e) {
+			throw new ExceptionsGerais("Id não encontrado!");
+		}
 	}
 	
 	public Editora atualizar(Editora editora, Long id) {
-		Editora edit = editoraRepository.getOne(id);
-		edit.setNome(editora.getNome());
-		return editoraRepository.save(edit);
+		try {	
+			Editora edit = editoraRepository.getOne(id);
+			edit.setNome(editora.getNome());
+			return editoraRepository.save(edit);
+		}catch(EntityNotFoundException e) {
+			throw new ExceptionsGerais("Id não encontrado!"); 
+		}
 	}
 }
