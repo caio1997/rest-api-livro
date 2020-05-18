@@ -17,4 +17,9 @@ public class EditoraService {
 	public List<Editora> findAll(){
 		return editoraRepository.findAll();
 	}
+	
+	public Editora add(Editora editora){
+		return editoraRepository.save(editora);
+	}
+	
 }
