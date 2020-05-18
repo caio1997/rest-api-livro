@@ -14,44 +14,44 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.enterprise.livro.entities.Genero;
-import com.enterprise.livro.services.GeneroService;
+import com.enterprise.livro.entities.Autor;
+import com.enterprise.livro.services.AutorService;
 
 @Controller
-@RequestMapping(value = "/genero")
-public class GeneroController {
+@RequestMapping(value = "/autor")
+public class AutorController {
 	
 	@Autowired
-	private GeneroService generoService; 
+	private AutorService autorService; 
 
 	@GetMapping
-	public ResponseEntity<List<Genero>> findAll(){
-		List<Genero> list = generoService.findAll();
+	public ResponseEntity<List<Autor>> findAll(){
+		List<Autor> list = autorService.findAll();
 		return ResponseEntity.ok(list);
 	}
 	
 	@PostMapping
-	public ResponseEntity<Genero> add(@RequestBody Genero genero){
-		Genero gen = generoService.add(genero);
-		return ResponseEntity.ok(gen);
+	public ResponseEntity<Autor> add(@RequestBody Autor autor){
+		Autor aut = autorService.add(autor);
+		return ResponseEntity.ok(aut);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Optional<Genero>> findById(@PathVariable Long id){
-		Optional<Genero> gen = generoService.findById(id);
-		return ResponseEntity.ok(gen);
+	public ResponseEntity<Optional<Autor>> findById(@PathVariable Long id){
+		Optional<Autor> aut = autorService.findById(id);
+		return ResponseEntity.ok(aut);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> remove(@PathVariable Long id) {
-		generoService.remove(id);
+		autorService.remove(id);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Genero> atualizar(@RequestBody Genero genero, @PathVariable Long id){
-		Genero gen = generoService.atualizar(genero, id);
-		return ResponseEntity.ok(gen);
+	public ResponseEntity<Autor> atualizar(@RequestBody Autor autor, @PathVariable Long id){
+		Autor aut = autorService.atualizar(autor, id);
+		return ResponseEntity.ok(aut);
 	}
 	
 }
