@@ -27,4 +27,8 @@ public class EditoraService {
 		return editoraRepository.findById(id);
 	}
 	
+	public void remove(Long id) {
+		editoraRepository.deleteById(id);
+	}
+	
 }
