@@ -12,7 +12,7 @@ public class Autor {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private Integer id;
+	private Long id;
 	private String nome;
 	private Date dataNascimento;
 	private String sexo;
@@ -21,7 +21,7 @@ public class Autor {
 	public Autor() {
 	}
 
-	public Autor(Integer id, String nome, Date dataNascimento, String sexo, String nacionalidade) {
+	public Autor(Long id, String nome, Date dataNascimento, String sexo, String nacionalidade) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -30,11 +30,11 @@ public class Autor {
 		this.nacionalidade = nacionalidade;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

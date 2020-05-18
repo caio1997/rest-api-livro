@@ -12,25 +12,25 @@ public class Livro {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private Integer id;
+	private Long id;
 	private String titulo;
 	private Date anoLancamento;
 	
 	public Livro() {
 	}
 
-	public Livro(Integer id, String titulo, Date anoLancamento) {
+	public Livro(Long id, String titulo, Date anoLancamento) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.anoLancamento = anoLancamento;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

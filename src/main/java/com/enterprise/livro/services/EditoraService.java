@@ -1,6 +1,7 @@
 package com.enterprise.livro.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,10 @@ public class EditoraService {
 	
 	public Editora add(Editora editora){
 		return editoraRepository.save(editora);
+	}
+	
+	public Optional<Editora> findById(Long id) {
+		return editoraRepository.findById(id);
 	}
 	
 }

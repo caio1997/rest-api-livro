@@ -10,23 +10,23 @@ public class Genero {
 
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	@Id
-	private Integer id;
+	private Long id;
 	private String genero;
 	
 	public Genero() {
 	}
 
-	public Genero(Integer id, String genero) {
+	public Genero(Long id, String genero) {
 		super();
 		this.id = id;
 		this.genero = genero;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
