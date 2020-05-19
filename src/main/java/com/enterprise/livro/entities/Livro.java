@@ -1,14 +1,18 @@
 package com.enterprise.livro.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Livro {
+public class Livro  implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
@@ -16,14 +20,19 @@ public class Livro {
 	private String titulo;
 	private Date anoLancamento;
 	
+	@ManyToOne
+	@JoinColumn(name = "editora_id")
+	private Editora editora = new Editora();
+	
 	public Livro() {
 	}
 
-	public Livro(Long id, String titulo, Date anoLancamento) {
+	public Livro(Long id, String titulo, Date anoLancamento, Editora editora) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.anoLancamento = anoLancamento;
+		this.editora = editora;
 	}
 
 	public Long getId() {
@@ -48,6 +57,15 @@ public class Livro {
 
 	public void setAnoLancamento(Date anoLancamento) {
 		this.anoLancamento = anoLancamento;
+	}
+	
+
+	public Editora getEditora() {
+		return editora;
+	}
+
+	public void setEditora(Editora editora) {
+		this.editora = editora;
 	}
 
 	@Override

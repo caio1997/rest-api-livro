@@ -1,17 +1,29 @@
 package com.enterprise.livro.entities;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Editora {
+public class Editora implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Long id;
 	private String nome;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "editora")
+	private List<Livro> livros = new ArrayList<>();
 	
 	public Editora() {
 	}
@@ -36,6 +48,11 @@ public class Editora {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+
+	public List<Livro> getLivros() {
+		return livros;
 	}
 
 	@Override
