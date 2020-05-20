@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.enterprise.livro.entities.Livro;
 import com.enterprise.livro.repository.LivroRepository;
 import com.enterprise.livro.services.exceptions.ExceptionsGerais;
+import com.enterprise.livro.services.exceptions.InsertIsNotFoundException;
 
 @Service
 public class LivroService {
@@ -58,8 +59,7 @@ public class LivroService {
 		}catch(EntityNotFoundException e) {
 			throw new ExceptionsGerais("Id não encontrado!"); 
 		}catch(DataIntegrityViolationException e) {
-			throw new ExceptionsGerais("Id não encontrado!"); 
-
+			throw new InsertIsNotFoundException("Inserção de item inexistente - Update incorreto"); 
 		}
 	}
 }

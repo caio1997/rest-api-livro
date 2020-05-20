@@ -14,6 +14,7 @@ import com.enterprise.livro.entities.Autor;
 import com.enterprise.livro.repository.AutorRepository;
 import com.enterprise.livro.services.exceptions.DeleteException;
 import com.enterprise.livro.services.exceptions.ExceptionsGerais;
+import com.enterprise.livro.services.exceptions.InsertIsNotFoundException;
 
 @Service
 public class AutorService {
@@ -59,6 +60,8 @@ public class AutorService {
 			return autorRepository.save(aut);
 		}catch(EntityNotFoundException e) {
 			throw new ExceptionsGerais("Id não encontrado!"); 
+		}catch(DataIntegrityViolationException e) {
+			throw new InsertIsNotFoundException("Inserção de item inexistente - Update incorreto"); 
 		}
 	}
 }

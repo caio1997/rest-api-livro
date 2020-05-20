@@ -14,6 +14,7 @@ import com.enterprise.livro.entities.Genero;
 import com.enterprise.livro.repository.GeneroRepository;
 import com.enterprise.livro.services.exceptions.DeleteException;
 import com.enterprise.livro.services.exceptions.ExceptionsGerais;
+import com.enterprise.livro.services.exceptions.InsertIsNotFoundException;
 
 @Service
 public class GeneroService {
@@ -56,6 +57,8 @@ public class GeneroService {
 			return generoRepository.save(gen);
 		}catch(EntityNotFoundException e) {
 			throw new ExceptionsGerais("Id não encontrado!"); 
+		}catch(DataIntegrityViolationException e) {
+			throw new InsertIsNotFoundException("Inserção de item inexistente - Update incorreto"); 
 		}
 	}
 }

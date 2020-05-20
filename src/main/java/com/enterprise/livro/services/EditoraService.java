@@ -14,6 +14,7 @@ import com.enterprise.livro.entities.Editora;
 import com.enterprise.livro.repository.EditoraRepository;
 import com.enterprise.livro.services.exceptions.DeleteException;
 import com.enterprise.livro.services.exceptions.ExceptionsGerais;
+import com.enterprise.livro.services.exceptions.InsertIsNotFoundException;
 
 @Service
 public class EditoraService {
@@ -50,6 +51,8 @@ public class EditoraService {
 			return editoraRepository.save(edit);
 		}catch(EntityNotFoundException e) {
 			throw new ExceptionsGerais("Id não encontrado!"); 
+		}catch(DataIntegrityViolationException e) {
+			throw new InsertIsNotFoundException("Inserção de item inexistente - Update incorreto"); 
 		}
 	}
 }

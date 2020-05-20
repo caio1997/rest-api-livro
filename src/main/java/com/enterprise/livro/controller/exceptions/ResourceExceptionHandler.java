@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.enterprise.livro.services.exceptions.DeleteException;
 import com.enterprise.livro.services.exceptions.ExceptionsGerais;
+import com.enterprise.livro.services.exceptions.InsertIsNotFoundException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
@@ -33,6 +34,13 @@ public class ResourceExceptionHandler {
 	
 	@ExceptionHandler(DeleteException.class)
 	public ResponseEntity<StandardError2> resourceNotFound(DeleteException e, HttpServletRequest request){
+		StandardError2 err = new StandardError2(e.getMessage(),request.getRequestURI());
+		return ResponseEntity.ok(err);
+
+	}
+	
+	@ExceptionHandler(InsertIsNotFoundException.class)
+	public ResponseEntity<StandardError2> UpdateIsNotFound(InsertIsNotFoundException e, HttpServletRequest request){
 		StandardError2 err = new StandardError2(e.getMessage(),request.getRequestURI());
 		return ResponseEntity.ok(err);
 
