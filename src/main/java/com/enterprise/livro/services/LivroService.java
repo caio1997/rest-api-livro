@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -52,9 +53,13 @@ public class LivroService {
 			liv.setAnoLancamento(livro.getAnoLancamento());
 			liv.setEditora(livro.getEditora());
 			liv.setGenero(livro.getGenero());
+			liv.setAutor(livro.getAutor());
 			return livroRepository.save(liv);
 		}catch(EntityNotFoundException e) {
 			throw new ExceptionsGerais("Id não encontrado!"); 
+		}catch(DataIntegrityViolationException e) {
+			throw new ExceptionsGerais("Id não encontrado!"); 
+
 		}
 	}
 }
