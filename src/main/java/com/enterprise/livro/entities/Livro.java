@@ -24,15 +24,20 @@ public class Livro  implements Serializable{
 	@JoinColumn(name = "editora_id")
 	private Editora editora = new Editora();
 	
+	@ManyToOne
+	@JoinColumn(name = "genero_id")
+	private Genero genero = new Genero();
+	
 	public Livro() {
 	}
 
-	public Livro(Long id, String titulo, Date anoLancamento, Editora editora) {
+	public Livro(Long id, String titulo, Date anoLancamento, Editora editora, Genero genero) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.anoLancamento = anoLancamento;
 		this.editora = editora;
+		this.genero = genero;
 	}
 
 	public Long getId() {
@@ -66,6 +71,15 @@ public class Livro  implements Serializable{
 
 	public void setEditora(Editora editora) {
 		this.editora = editora;
+	}
+	
+
+	public Genero getGenero() {
+		return genero;
+	}
+
+	public void setGenero(Genero genero) {
+		this.genero = genero;
 	}
 
 	@Override

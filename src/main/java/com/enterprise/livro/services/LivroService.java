@@ -51,6 +51,7 @@ public class LivroService {
 			liv.setTitulo(livro.getTitulo());
 			liv.setAnoLancamento(livro.getAnoLancamento());
 			liv.setEditora(livro.getEditora());
+			liv.setGenero(livro.getGenero());
 			return livroRepository.save(liv);
 		}catch(EntityNotFoundException e) {
 			throw new ExceptionsGerais("Id não encontrado!"); 
