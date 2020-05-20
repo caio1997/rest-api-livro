@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.enterprise.livro.entities.Genero;
 import com.enterprise.livro.repository.GeneroRepository;
 import com.enterprise.livro.services.exceptions.DeleteException;
+import com.enterprise.livro.services.exceptions.ExceptionIdIsNotFound;
 import com.enterprise.livro.services.exceptions.ExceptionsGerais;
 import com.enterprise.livro.services.exceptions.InsertIsNotFoundException;
 
@@ -31,13 +32,8 @@ public class GeneroService {
 	}
 	
 	public Optional<Genero> findById(Long id) {
-		//List<Genero> list = new ArrayList<>();
-		//for(Genero generos : list) {
-			//if(generos.getId().equals(generoRepository.findById(id))) {
-					return generoRepository.findById(id);
-			//}
-		//}
-		//throw new ExceptionIdIsNotFound("Id não encontrado");
+		Optional<Genero> obj = generoRepository.findById(id);
+		 return Optional.ofNullable(obj.orElseThrow(() -> new ExceptionIdIsNotFound("Id não existente")));
 	}
 	
 	public void remove(Long id) {

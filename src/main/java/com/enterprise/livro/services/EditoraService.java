@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.enterprise.livro.entities.Editora;
 import com.enterprise.livro.repository.EditoraRepository;
 import com.enterprise.livro.services.exceptions.DeleteException;
+import com.enterprise.livro.services.exceptions.ExceptionIdIsNotFound;
 import com.enterprise.livro.services.exceptions.ExceptionsGerais;
 import com.enterprise.livro.services.exceptions.InsertIsNotFoundException;
 
@@ -31,7 +32,10 @@ public class EditoraService {
 	}
 	
 	public Optional<Editora> findById(Long id) {
-		return editoraRepository.findById(id);
+		 Optional<Editora> obj = editoraRepository.findById(id);
+		 return Optional.ofNullable(obj.orElseThrow(() -> new ExceptionIdIsNotFound("Id não existente")));
+	
+		
 	}
 	
 	public void remove(Long id) {
